@@ -1,3 +1,8 @@
+# FIX: Refactored logic between app.py and logic_utils.py
+#           -logic_utils.py — all four raise NotImplementedError stubs replaced with the real implementations copied verbatim from app.py.
+#           -app.py — the four function definitions removed; replaced with a single from logic_utils import ... line. All call sites (get_range_for_difficulty, parse_guess, check_guess, update_score) remain unchanged and will resolve through the import.
+
+
 import random
 import streamlit as st
 

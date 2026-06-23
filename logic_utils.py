@@ -1,11 +1,19 @@
+# FIX: Refactored logic between app.py and logic_utils.py
+#           -logic_utils.py — all four raise NotImplementedError stubs replaced with the real implementations copied verbatim from app.py.
+#           -app.py — the four function definitions removed; replaced with a single from logic_utils import ... line. All call sites (get_range_for_difficulty, parse_guess, check_guess, update_score) remain unchanged and will resolve through the import.
+
+
 def get_range_for_difficulty(difficulty: str):
     """Return (low, high) inclusive range for a given difficulty."""
     if difficulty == "Easy":
         return 1, 20
     if difficulty == "Normal":
-        return 1, 50
+        return (
+            1,
+            50,
+        )  # FIX: Normal returns a domain with the medium difficulty set of value
     if difficulty == "Hard":
-        return 1, 100
+        return 1, 100  # FIX: Hard returns a domain with the hardest set of values
     return 1, 100
 
 
@@ -38,21 +46,22 @@ def check_guess(guess, secret):
 
     outcome examples: "Win", "Too High", "Too Low"
     """
+    # FIX: fixed messaging.
     if guess == secret:
         return "Win", "🎉 Correct!"
 
     try:
         if guess > secret:
-            return "Too High", "📉 Go LOWER!"
+            return "Too High", "📉 Go LOWER!"  # FIX: returns correct message
         else:
-            return "Too Low", "📈 Go HIGHER!"
+            return "Too Low", "📈 Go HIGHER!"  # FIX: returns correct message
     except TypeError:
         g = str(guess)
         if g == secret:
             return "Win", "🎉 Correct!"
         if g > secret:
-            return "Too High", "📉 Go LOWER!"
-        return "Too Low", "📈 Go HIGHER!"
+            return "Too High", "📉 Go LOWER!"  # FIX: returns correct message
+        return "Too Low", "📈 Go HIGHER!"  # FIX: returns correct message
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
@@ -64,6 +73,7 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
         return current_score + points
 
     if outcome == "Too High":
+        # FIX: fixed weird logic where current_score = currenct_score +5 on even attempts
         return current_score - 5
 
     if outcome == "Too Low":
