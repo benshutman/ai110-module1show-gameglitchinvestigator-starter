@@ -26,7 +26,7 @@ Document at least 3 bugs you found. Add rows as needed.
 | secret:99 -> guess:100, repeated input| "Go LOWER" hint, score reduction | "Go Higher" hint shown, score went positive after failed guess, score=5| "none"|
 | secret:99 -> guess:  0| It should throw an error due to invalid input range | "Go LOWER" hint shown| "none"|
 | secret:99 -> guess:  101| It should throw an error due to invalid input range | "Go HIGHER" hint shown| "none"|
-| Difficulty:Normal| difficulty parameters (range, # of guesses) should be set to middle value between easy and hard| difficulty parameters for "Normal" are more difficult than those for "Hard"| "none"|
+| Difficulty:Normal| difficulty parameters (range, # of guesses) should be set to middle value between easy and hard| difficulty parameters for "Normal" are more difficult than those for "Hard" - e.g. line 9 in app.py| "none"|
 
 
 ---
