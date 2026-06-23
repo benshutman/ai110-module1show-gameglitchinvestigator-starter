@@ -47,7 +47,12 @@ Document at least 3 bugs you found. Add rows as needed.
 - Describe at least one test you ran (manual or using pytest)  
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
-
+  -Claude made suggestions on bugfixing, so I saved my project to Git and then allowed Claude to make the changes. I then tested with the modified program. For some bugs I asked Claude for suggestions on how to test them: Claude suggested running the program and call the function from the Python shell. This was great because I could get Claude to programatically test the functions. 
+  -I made edits to the check_guess() function, and Claude helped me test them by opening the Python shell and importing the function from app.py. I could then check repeated guesses with a for loop. 
+    for i in range(5): 
+      print(i, check_guess(42, 42))   # should always be ("Win", ...)
+      print(i, check_guess(50, 42))   # should always be ("Too High", ...)
+      print(i, check_guess(10, 42))   # should always be ("Too Low", ...)
 ---
 
 ## 4. What did you learn about Streamlit and state?
